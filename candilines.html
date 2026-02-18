@@ -1,0 +1,168 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red de asociaciones - Teapa, Tabasco</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="./index.html">Teapa: Investigación & Estrategia</a>
+          <div class="brand-subtitle">Red de coincidencias / asociación</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="./index.html">Inicio</a>
+          <a class="nav-link" href="./candits.html">Precandidatos</a>
+          <a class="nav-link nav-link--active" href="./candilines.html">Red</a>
+          <a class="nav-link" href="./staff.html">Staff</a>
+          <a class="nav-link" href="./stock.html">Stock</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-hero">
+        <h1 class="page-title">Red de asociaciones</h1>
+        <p class="page-description">
+          Nodos = personas/temas. Enlaces = relaciones (asociación, investigación, señalamiento, alianza, etc.).
+        </p>
+      </section>
+
+      <section class="network-toolbar" aria-label="Controles de la red">
+        <label class="field">
+          <span class="field-label">Buscar nodo</span>
+          <input id="netSearch" class="input" type="search" placeholder="Nombre, alias, etiqueta..." autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Tipo de enlace</span>
+          <select id="netLinkType" class="select">
+            <option value="">Todos</option>
+            <option value="asociacion">Asociación</option>
+            <option value="investigacion">Investigación</option>
+            <option value="senalamiento">Señalamiento</option>
+            <option value="alianza">Alianza</option>
+            <option value="negocio">Negocio / contrato</option>
+          </select>
+        </label>
+
+        <div class="network-actions">
+          <button id="applyJson" class="button button--small" type="button">Aplicar JSON</button>
+          <button id="resetView" class="button button--small" type="button">Recentrar</button>
+        </div>
+      </section>
+
+      <section class="network-layout">
+        <div class="network-canvas" id="networkCanvas" role="img" aria-label="Visualización de red"></div>
+
+        <aside class="network-side">
+          <div class="side-card">
+            <h2 class="side-title">Detalle</h2>
+            <div id="nodeDetail" class="side-body muted">Selecciona un nodo…</div>
+          </div>
+
+          <div class="side-card">
+            <h2 class="side-title">Datos (JSON)</h2>
+            <textarea id="netJson" class="textarea" spellcheck="false"></textarea>
+            <div class="side-hint muted">Edita y presiona “Aplicar JSON”.</div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      window.__NETWORK_DEFAULT__ = {
+        nodes: [
+          {
+            id: "luis-blanco-de-la-vega-cruz",
+            label: "Luis Blanco de la Vega Cruz",
+            type: "precandidato",
+            party: "PRI",
+            tags: ["PRI"],
+            img: "./imgcand/luisblanco.png",
+          },
+          {
+            id: "reynol-chamek-cruz",
+            label: "Reynol Chamek Cruz",
+            type: "precandidato",
+            party: "Morena",
+            tags: ["Morena"],
+            img: "./imgcand/reynolchamec.png",
+          },
+          {
+            id: "hector-raul-cabrera-pascasio",
+            label: "Hector Raúl Cabrera Pascasio",
+            type: "precandidato",
+            party: "Morena",
+            tags: ["PRI", "PRD", "Morena"],
+            img: "./imgcand/raulcabrera.png",
+          },
+          {
+            id: "fabiola-salazar-armengol",
+            label: "Fabiola Salazar Armengol",
+            type: "precandidata",
+            party: "(por confirmar)",
+            tags: ["PRD", "Morena"],
+            img: "./imgcand/fabiolasalazar.png",
+          },
+          {
+            id: "teolinda",
+            label: "Teolinda",
+            type: "precandidata",
+            party: "(por confirmar)",
+            tags: [],
+            img: "./imgcand/teolindaflota.png",
+          },
+          {
+            id: "personaje-a",
+            label: "Personaje A (placeholder)",
+            type: "persona",
+            tags: ["operador", "grupo"],
+          },
+          {
+            id: "investigacion-1",
+            label: "Investigación 1 (placeholder)",
+            type: "investigacion",
+            tags: ["carpeta", "nota"],
+          },
+          {
+            id: "obra-contrato-1",
+            label: "Obra/Contrato 1 (placeholder)",
+            type: "contrato",
+            tags: ["empresa", "licitacion"],
+          },
+        ],
+        links: [
+          {
+            source: "reynol-chamek-cruz",
+            target: "personaje-a",
+            type: "asociacion",
+            label: "(pendiente)",
+            weight: 1,
+          },
+          {
+            source: "hector-raul-cabrera-pascasio",
+            target: "investigacion-1",
+            type: "investigacion",
+            label: "(pendiente)",
+            weight: 2,
+          },
+          {
+            source: "fabiola-salazar-armengol",
+            target: "obra-contrato-1",
+            type: "negocio",
+            label: "(pendiente)",
+            weight: 1,
+          },
+        ],
+      };
+    </script>
+  </body>
+</html>

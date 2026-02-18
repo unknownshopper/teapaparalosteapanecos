@@ -1,0 +1,204 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock GGM / Inventario - Teapa, Tabasco</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="./index.html">Teapa: Investigación & Estrategia</a>
+          <div class="brand-subtitle">GGM: inventario de artículos para regalar en caminatas (compra / donación)</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="./index.html">Inicio</a>
+          <a class="nav-link" href="./candits.html">Precandidatos</a>
+          <a class="nav-link" href="./candilines.html">Red</a>
+          <a class="nav-link" href="./staff.html">Staff</a>
+          <a class="nav-link nav-link--active" href="./stock.html">Stock</a>
+          <a class="nav-link" href="./stocktots.html">Totales</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-hero">
+        <h1 class="page-title">Stock GGM / Inventario</h1>
+        <p class="page-description">
+          Inventario de artículos que GGM entrega/regala durante recorridos. Registra si se compró o donó, cantidades,
+          proveedor/donador y costos.
+        </p>
+      </section>
+
+      <section class="table-toolbar" aria-label="Herramientas de búsqueda y filtrado">
+        <label class="field">
+          <span class="field-label">Buscar</span>
+          <input
+            id="stockSearch"
+            class="input"
+            type="search"
+            placeholder="Insumo, categoría, proveedor/donador, notas..."
+            autocomplete="off"
+          />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Origen</span>
+          <select id="stockOrigin" class="select">
+            <option value="">Todos</option>
+            <option value="compra">Compra</option>
+            <option value="donacion">Donación</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Categoría</span>
+          <select id="stockCategory" class="select"></select>
+        </label>
+
+        <div class="table-actions">
+          <button id="stockAddToggle" class="button button--small" type="button">Agregar</button>
+          <button id="stockExport" class="button button--small" type="button">Exportar</button>
+        </div>
+      </section>
+
+      <dialog id="stockModal" class="modal">
+        <form id="stockAddForm" class="modal-card" method="dialog" autocomplete="off">
+          <div class="modal-header">
+            <h2 class="modal-title">Agregar registro (Stock GGM)</h2>
+            <button id="stockAddCancel" class="icon-button" type="button" aria-label="Cerrar">×</button>
+          </div>
+
+          <div class="modal-body form-grid">
+            <label class="field">
+              <span class="field-label">Categoría</span>
+              <select id="stockCategoryInput" class="select" required></select>
+            </label>
+
+            <label class="field" id="stockCategoryOtherField" hidden>
+              <span class="field-label">Categoría (especificar)</span>
+              <input id="stockCategoryOther" class="input" type="text" placeholder="Ej. Termos" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Origen</span>
+              <select id="stockOriginInput" class="select" required>
+                <option value="compra">Compra</option>
+                <option value="donacion">Donación</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Cantidad</span>
+              <input id="stockQuantity" class="input" type="number" min="0" step="1" required />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Unidad</span>
+              <select id="stockUnit" class="select" required>
+                <option value="pza">Pieza (pza)</option>
+                <option value="caja">Caja</option>
+                <option value="paquete">Paquete</option>
+                <option value="bolsa">Bolsa</option>
+                <option value="lt">Litro (lt)</option>
+                <option value="gal">Galón (gal)</option>
+                <option value="m">Metro (m)</option>
+                <option value="servicio">Servicio</option>
+                <option value="viaje">Viaje</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Proveedor / Donador</span>
+              <input id="stockSourceName" class="input" type="text" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Contacto</span>
+              <input id="stockSourceContact" class="input" type="text" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Costo unit.</span>
+              <input id="stockUnitCost" class="input" type="number" min="0" step="0.01" value="0" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Total</span>
+              <input id="stockTotal" class="input" type="text" readonly />
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Notas</span>
+              <input id="stockNotes" class="input" type="text" />
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button class="button button--small" type="submit">Guardar</button>
+            <button class="button button--small" type="button" id="stockDelete">Eliminar</button>
+            <button class="button button--small" type="button" id="stockAddCancel2">Cancelar</button>
+          </div>
+        </form>
+      </dialog>
+
+      <section class="table-layout table-layout--single">
+        <div class="table-card">
+          <div class="table-wrap" role="region" aria-label="Tabla de inventario" tabindex="0">
+            <table class="table" id="stockTable">
+              <thead>
+                <tr>
+                  <th>Categoría</th>
+                  <th>Origen</th>
+                  <th>Cantidad</th>
+                  <th>Unidad</th>
+                  <th>Proveedor / Donador</th>
+                  <th>Contacto</th>
+                  <th>Costo unit.</th>
+                  <th>Total (calculado)</th>
+                  <th>Notas</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="stockEmpty" class="empty-state" hidden>No hay resultados.</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      window.__STOCK_DEFAULT__ = {
+        categories: [
+          "Camisas",
+          "Gorras",
+          "Volantes",
+          "Lonas",
+          "Gasolina",
+          "Agua / Alimentos",
+          "Sonido",
+          "Transporte",
+          "Misceláneo",
+        ],
+        inventory: [
+          {
+            category: "Camisas",
+            origin: "compra",
+            quantity: 100,
+            unit: "pza",
+            sourceName: "(proveedor/donador)",
+            sourceContact: "(teléfono / red / referencia)",
+            unitCost: 0,
+            notes: "(pendiente)",
+          },
+        ],
+      };
+    </script>
+  </body>
+</html>

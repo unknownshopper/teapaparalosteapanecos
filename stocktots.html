@@ -1,0 +1,169 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Totales Stock GGM - Teapa, Tabasco</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="./index.html">Teapa: Investigación &amp; Estrategia</a>
+          <div class="brand-subtitle">GGM: totales por artículo y salidas (dinero / artículos)</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="./index.html">Inicio</a>
+          <a class="nav-link" href="./candits.html">Precandidatos</a>
+          <a class="nav-link" href="./candilines.html">Red</a>
+          <a class="nav-link" href="./staff.html">Staff</a>
+          <a class="nav-link" href="./stock.html">Stock</a>
+          <a class="nav-link nav-link--active" href="./stocktots.html">Totales</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-hero">
+        <h1 class="page-title">Totales Stock GGM</h1>
+        <p class="page-description">
+          Resumen de inventario por tipo de artículo (entradas - salidas). Registra salidas diarias (gorras, lonas, volantes,
+          vales, dinero) indicando destino.
+        </p>
+      </section>
+
+      <section class="table-toolbar">
+        <label class="field">
+          <span class="field-label">Buscar</span>
+          <input id="stockTotsSearch" class="input" type="search" placeholder="Categoría, unidad..." autocomplete="off" />
+        </label>
+
+        <div class="table-actions">
+          <button id="stockOutAddToggle" class="button button--small" type="button">Registrar salida</button>
+          <button id="stockTotsExport" class="button button--small" type="button">Exportar</button>
+        </div>
+      </section>
+
+      <dialog id="stockOutModal" class="modal">
+        <form id="stockOutForm" class="modal-card" method="dialog" autocomplete="off">
+          <div class="modal-header">
+            <h2 class="modal-title">Registrar salida</h2>
+            <button id="stockOutCancel" class="icon-button" type="button" aria-label="Cerrar">×</button>
+          </div>
+
+          <div class="modal-body form-grid">
+            <label class="field">
+              <span class="field-label">Tipo</span>
+              <select id="stockOutType" class="select" required>
+                <option value="articulo">Artículo</option>
+                <option value="dinero">Dinero</option>
+              </select>
+            </label>
+
+            <label class="field" id="stockOutCategoryField">
+              <span class="field-label">Categoría</span>
+              <select id="stockOutCategory" class="select"></select>
+            </label>
+
+            <label class="field" id="stockOutCategoryOtherField" hidden>
+              <span class="field-label">Categoría (especificar)</span>
+              <input id="stockOutCategoryOther" class="input" type="text" placeholder="Ej. Vales" />
+            </label>
+
+            <label class="field" id="stockOutQuantityField">
+              <span class="field-label">Cantidad</span>
+              <input id="stockOutQuantity" class="input" type="number" min="0" step="1" />
+            </label>
+
+            <label class="field" id="stockOutUnitField">
+              <span class="field-label">Unidad</span>
+              <select id="stockOutUnit" class="select">
+                <option value="pza">Pieza (pza)</option>
+                <option value="caja">Caja</option>
+                <option value="paquete">Paquete</option>
+                <option value="bolsa">Bolsa</option>
+                <option value="lt">Litro (lt)</option>
+                <option value="gal">Galón (gal)</option>
+                <option value="m">Metro (m)</option>
+                <option value="servicio">Servicio</option>
+                <option value="viaje">Viaje</option>
+              </select>
+            </label>
+
+            <label class="field" id="stockOutUnitCostField">
+              <span class="field-label">Costo unit. (aprox.)</span>
+              <input id="stockOutUnitCost" class="input" type="number" min="0" step="0.01" value="0" />
+            </label>
+
+            <label class="field" id="stockOutMoneyField" hidden>
+              <span class="field-label">Monto (dinero)</span>
+              <input id="stockOutMoney" class="input" type="number" min="0" step="0.01" value="0" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Destino (comunidad/persona/institución)</span>
+              <input id="stockOutDestination" class="input" type="text" required />
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Motivo / Nota</span>
+              <input id="stockOutNotes" class="input" type="text" />
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button class="button button--small" type="submit">Guardar</button>
+            <button class="button button--small" type="button" id="stockOutDelete">Eliminar</button>
+            <button class="button button--small" type="button" id="stockOutCancel2">Cancelar</button>
+          </div>
+        </form>
+      </dialog>
+
+      <section class="table-layout table-layout--single">
+        <div class="table-card">
+          <div class="table-wrap" role="region" aria-label="Tabla de totales" tabindex="0">
+            <table class="table" id="stockTotsTable">
+              <thead>
+                <tr>
+                  <th>Artículo</th>
+                  <th>Unidad</th>
+                  <th>Entradas</th>
+                  <th>Salidas</th>
+                  <th>Total</th>
+                  <th>Valor aprox. (total)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="stockTotsEmpty" class="empty-state" hidden>No hay datos.</p>
+        </div>
+
+        <div class="table-card" style="margin-top:14px;">
+          <div class="table-wrap" role="region" aria-label="Tabla de salidas" tabindex="0">
+            <table class="table" id="stockOutTable">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Tipo</th>
+                  <th>Artículo</th>
+                  <th>Cant.</th>
+                  <th>Unidad</th>
+                  <th>Monto</th>
+                  <th>Destino</th>
+                  <th>Nota</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="stockOutEmpty" class="empty-state" hidden>No hay salidas registradas.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

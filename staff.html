@@ -1,0 +1,157 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff GGM / Equipo - Teapa, Tabasco</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="./index.html">Teapa: Investigación & Estrategia</a>
+          <div class="brand-subtitle">GGM: colaboradores, cercanos, operativos, choferes, logística, etc.</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="./index.html">Inicio</a>
+          <a class="nav-link" href="./candits.html">Precandidatos</a>
+          <a class="nav-link" href="./candilines.html">Red</a>
+          <a class="nav-link nav-link--active" href="./staff.html">Staff</a>
+          <a class="nav-link" href="./stock.html">Stock</a>
+          <a class="nav-link" href="./stocktots.html">Totales</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-hero">
+        <h1 class="page-title">Staff GGM / Equipo</h1>
+        <p class="page-description">
+          Lista de personas que trabajan para GGM (cercanos, operativos, choferes, logística, comunicación, enlaces, etc.).
+        </p>
+      </section>
+
+      <section class="table-toolbar" aria-label="Herramientas de búsqueda y filtrado">
+        <label class="field">
+          <span class="field-label">Buscar</span>
+          <input id="staffSearch" class="input" type="search" placeholder="Nombre, rol, notas..." autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Rol</span>
+          <select id="staffRole" class="select"></select>
+        </label>
+
+        <div class="table-actions">
+          <button id="staffAddToggle" class="button button--small" type="button">Agregar</button>
+          <button id="staffExport" class="button button--small" type="button">Exportar</button>
+        </div>
+      </section>
+
+      <dialog id="staffModal" class="modal">
+        <form id="staffAddForm" class="modal-card" method="dialog" autocomplete="off">
+          <div class="modal-header">
+            <h2 class="modal-title">Agregar persona (Staff GGM)</h2>
+            <button id="staffAddCancel" class="icon-button" type="button" aria-label="Cerrar">×</button>
+          </div>
+
+          <div class="modal-body form-grid">
+            <label class="field">
+              <span class="field-label">Nombre / Persona</span>
+              <input id="staffName" class="input" type="text" required />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Rol</span>
+              <select id="staffRoleInput" class="select" required>
+                <option value="Operativo">Operativo</option>
+                <option value="Recomendado">Recomendado</option>
+                <option value="Observación">Observación</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </label>
+
+            <label class="field" id="staffRoleOtherField" hidden>
+              <span class="field-label">Rol (especificar)</span>
+              <input id="staffRoleOther" class="input" type="text" placeholder="Ej. Coordinador" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Teléfono / WhatsApp</span>
+              <input id="staffPhone" class="input" type="text" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Dirección</span>
+              <input id="staffAddress" class="input" type="text" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Cuenta con licencia</span>
+              <select id="staffLicense" class="select" required>
+                <option value="no">No</option>
+                <option value="si">Sí</option>
+              </select>
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Notas / Observaciones</span>
+              <input id="staffNotes" class="input" type="text" />
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button class="button button--small" type="submit">Guardar</button>
+            <button class="button button--small" type="button" id="staffDelete">Eliminar</button>
+            <button class="button button--small" type="button" id="staffAddCancel2">Cancelar</button>
+          </div>
+        </form>
+      </dialog>
+
+      <section class="table-layout table-layout--single">
+        <div class="table-card">
+          <div class="table-wrap" role="region" aria-label="Tabla de staff" tabindex="0">
+            <table class="table" id="staffTable">
+              <thead>
+                <tr>
+                  <th>Persona</th>
+                  <th>Rol</th>
+                  <th>Teléfono / WhatsApp</th>
+                  <th>Dirección</th>
+                  <th>Licencia</th>
+                  <th>Notas</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="staffEmpty" class="empty-state" hidden>No hay resultados.</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      window.__STAFF_DEFAULT__ = {
+        roles: [
+          "Operativo",
+          "Recomendado",
+          "Observación",
+        ],
+        people: [
+          {
+            name: "(placeholder)",
+            role: "operativo",
+            phone: "(pendiente)",
+            address: "(pendiente)",
+            license: "no",
+            notes: "(pendiente)",
+          },
+        ],
+      };
+    </script>
+  </body>
+</html>

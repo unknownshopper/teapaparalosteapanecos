@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precandidaturas - Teapa, Tabasco</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="./index.html">Teapa: Investigación & Estrategia</a>
+          <div class="brand-subtitle">Precandidaturas y ficha de seguimiento</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="./index.html">Inicio</a>
+          <a class="nav-link nav-link--active" href="./candits.html">Precandidatos</a>
+          <a class="nav-link" href="./candilines.html">Red</a>
+          <a class="nav-link" href="./staff.html">Staff</a>
+          <a class="nav-link" href="./stock.html">Stock</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-hero">
+        <h1 class="page-title">Precandidatos(as)</h1>
+        <p class="page-description">
+          Esta página es un insumo de investigación. Completa cada ficha con hallazgos verificables y agrega fuentes.
+        </p>
+      </section>
+
+      <section class="toolbar" aria-label="Herramientas de búsqueda y filtrado">
+        <label class="field">
+          <span class="field-label">Buscar</span>
+          <input id="searchInput" class="input" type="search" placeholder="Nombre, partido, notas..." autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Partido</span>
+          <select id="partyFilter" class="select">
+            <option value="">Todos</option>
+            <option value="morena">Morena</option>
+            <option value="pri">PRI</option>
+            <option value="otro">Otro / Sin definir</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="cards" id="candidatesGrid">
+        <article class="card" data-party="pri" data-name="Luis Blanco" data-tags="pri">
+          <header class="card-header">
+            <div class="card-header-left">
+              <img class="avatar" src="./imgcand/luisblanco.png" alt="Luis Blanco de la Vega Cruz" loading="lazy" />
+              <h2 class="card-title">Luis Blanco de la Vega Cruz</h2>
+            </div>
+            <div class="pill">PRI</div>
+          </header>
+
+          <div class="meta">
+            <div class="meta-row"><span class="meta-label">Cargo buscado:</span> <span class="meta-value">(pendiente)</span></div>
+            <div class="meta-row"><span class="meta-label">Ámbito:</span> <span class="meta-value">Teapa, Tabasco</span></div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-section-title">Resumen</h3>
+            <p class="muted">(pendiente de investigación)</p>
+
+            <h3 class="card-section-title">Antecedentes / trayectoria</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Señalamientos / controversias</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Fuentes (links)</h3>
+            <ul class="list list--links">
+              <li><a href="#" aria-disabled="true">(agrega enlaces aquí)</a></li>
+            </ul>
+
+            <h3 class="card-section-title">Notas internas</h3>
+            <p class="muted">(pendiente)</p>
+          </div>
+        </article>
+
+        <article class="card" data-party="morena" data-name="Reynol Chamek" data-tags="morena">
+          <header class="card-header">
+            <div class="card-header-left">
+              <img class="avatar" src="./imgcand/reynolchamec.png" alt="Reynol Chamek Cruz" loading="lazy" />
+              <h2 class="card-title">Reynol Chamek Cruz</h2>
+            </div>
+            <div class="pill pill--morena">Morena May</div>
+          </header>
+
+          <div class="meta">
+            <div class="meta-row"><span class="meta-label">Cargo buscado:</span> <span class="meta-value">(pendiente)</span></div>
+            <div class="meta-row"><span class="meta-label">Ámbito:</span> <span class="meta-value">Teapa, Tabasco</span></div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-section-title">Resumen</h3>
+            <p class="muted">(pendiente de investigación)</p>
+
+            <h3 class="card-section-title">Antecedentes / trayectoria</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Señalamientos / controversias</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Fuentes (links)</h3>
+            <ul class="list list--links">
+              <li><a href="#" aria-disabled="true">(agrega enlaces aquí)</a></li>
+            </ul>
+
+            <h3 class="card-section-title">Notas internas</h3>
+            <p class="muted">(pendiente)</p>
+          </div>
+        </article>
+
+        <article class="card" data-party="morena" data-name="Raúl Cabrera" data-tags="morena,pri">
+          <header class="card-header">
+            <div class="card-header-left">
+              <img class="avatar" src="./imgcand/raulcabrera.png" alt="Hector Raúl Cabrera Pascasio" loading="lazy" />
+              <h2 class="card-title">Hector Raúl Cabrera Pascasio</h2>
+            </div>
+            <div class="pill pill--morena">PRI - PRD - Morena</div>
+          </header>
+
+          <div class="meta">
+            <div class="meta-row"><span class="meta-label">Cargo buscado:</span> <span class="meta-value">(pendiente)</span></div>
+            <div class="meta-row"><span class="meta-label">Partido anterior:</span> <span class="meta-value">PRI</span></div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-section-title">Resumen</h3>
+            <p class="muted">(pendiente de investigación)</p>
+
+            <h3 class="card-section-title">Antecedentes / trayectoria</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Señalamientos / controversias</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Fuentes (links)</h3>
+            <ul class="list list--links">
+              <li><a href="#" aria-disabled="true">(agrega enlaces aquí)</a></li>
+            </ul>
+
+            <h3 class="card-section-title">Notas internas</h3>
+            <p class="muted">(pendiente)</p>
+          </div>
+        </article>
+
+        <article class="card" data-party="otro" data-name="Fabiola Salazar" data-tags="">
+          <header class="card-header">
+            <div class="card-header-left">
+              <img class="avatar" src="./imgcand/fabiolasalazar.png" alt="Fabiola Salazar Armengol" loading="lazy" />
+              <h2 class="card-title">Fabiola Salazar Armengol</h2>
+            </div>
+            <div class="pill pill--neutral">PRD - Morena</div>
+          </header>
+
+          <div class="meta">
+            <div class="meta-row"><span class="meta-label">Cargo buscado:</span> <span class="meta-value">(pendiente)</span></div>
+            <div class="meta-row"><span class="meta-label">Ámbito:</span> <span class="meta-value">Teapa, Tabasco</span></div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-section-title">Resumen</h3>
+            <p class="muted">(pendiente de investigación)</p>
+
+            <h3 class="card-section-title">Antecedentes / trayectoria</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Señalamientos / controversias</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Fuentes (links)</h3>
+            <ul class="list list--links">
+              <li><a href="#" aria-disabled="true">(agrega enlaces aquí)</a></li>
+            </ul>
+
+            <h3 class="card-section-title">Notas internas</h3>
+            <p class="muted">(pendiente)</p>
+          </div>
+        </article>
+
+        <article class="card" data-party="otro" data-name="Teolinda" data-tags="">
+          <header class="card-header">
+            <div class="card-header-left">
+              <img class="avatar" src="./imgcand/teolindaflota.png" alt="Teolinda" loading="lazy" />
+              <h2 class="card-title">Teolinda</h2>
+            </div>
+            <div class="pill pill--neutral">(Partido por confirmar)</div>
+          </header>
+
+          <div class="meta">
+            <div class="meta-row"><span class="meta-label">Cargo buscado:</span> <span class="meta-value">(pendiente)</span></div>
+            <div class="meta-row"><span class="meta-label">Ámbito:</span> <span class="meta-value">Teapa, Tabasco</span></div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-section-title">Resumen</h3>
+            <p class="muted">(pendiente de investigación)</p>
+
+            <h3 class="card-section-title">Antecedentes / trayectoria</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Señalamientos / controversias</h3>
+            <ul class="list">
+              <li>(pendiente)</li>
+            </ul>
+
+            <h3 class="card-section-title">Fuentes (links)</h3>
+            <ul class="list list--links">
+              <li><a href="#" aria-disabled="true">(agrega enlaces aquí)</a></li>
+            </ul>
+
+            <h3 class="card-section-title">Notas internas</h3>
+            <p class="muted">(pendiente)</p>
+          </div>
+        </article>
+      </section>
+
+      <dialog id="candModal" class="modal">
+        <form id="candForm" class="modal-card" method="dialog" autocomplete="off">
+          <div class="modal-header">
+            <h2 class="modal-title" id="candModalTitle">Editar ficha</h2>
+            <button id="candCancel" class="icon-button" type="button" aria-label="Cerrar">×</button>
+          </div>
+
+          <div class="modal-body form-grid">
+            <label class="field form-grid--full">
+              <span class="field-label">Resumen</span>
+              <textarea id="candSummary" class="textarea" rows="3" spellcheck="false"></textarea>
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Antecedentes / trayectoria (1 por línea)</span>
+              <textarea id="candBackground" class="textarea" rows="4" spellcheck="false"></textarea>
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Señalamientos / controversias (1 por línea)</span>
+              <textarea id="candFlags" class="textarea" rows="4" spellcheck="false"></textarea>
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Fuentes (links, 1 por línea)</span>
+              <textarea id="candSources" class="textarea" rows="3" spellcheck="false"></textarea>
+            </label>
+
+            <label class="field form-grid--full">
+              <span class="field-label">Notas internas</span>
+              <textarea id="candNotes" class="textarea" rows="3" spellcheck="false"></textarea>
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button class="button button--small" type="submit">Guardar</button>
+            <button class="button button--small" type="button" id="candDelete">Eliminar</button>
+            <button class="button button--small" type="button" id="candCancel2">Cancelar</button>
+          </div>
+        </form>
+      </dialog>
+
+      <p id="emptyState" class="empty-state" hidden>No hay resultados con esos filtros.</p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>Proyecto de investigación y estrategia. Actualiza con fuentes y fechas.</small>
+      </div>
+    </footer>
+  </body>
+</html>
